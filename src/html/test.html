@@ -1,0 +1,34 @@
+<html>
+<head>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script type="text/javascript" src="../scripts/operations.js"></script>
+	<script type="text/javascript" src="../scripts/stackmachine.js"></script>
+	<script type="text/javascript" src="../scripts/stackvalue.js"></script>
+	<script type="text/javascript" src="../scripts/exceptions.js"></script>
+	<script type="text/javascript" src="../scripts/lexer.js"></script>
+	<script type="text/javascript">
+		
+		$(function() {
+			$("#run").click(function() {
+				var source = $("#source").val();
+				program = Lexer.lex(source);
+				var machine = new StackMachine();
+				machine.loadInstructions(program);
+				try {
+					machine.executeAll();
+					console.log('Stack head = ' + machine.getStack().pop().value);
+				}
+				catch (ex) {
+					console.log('Error = ' + ex.message);
+				}
+			});
+		});
+	</script>
+</head>
+
+<body>
+	<textarea id="source" style="display:block; width:500px; height:300px;"></textarea>
+	<button id="run" style="width:50px; height:20px;">Run</button>
+</body>
+
+</html>
