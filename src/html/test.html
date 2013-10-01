@@ -1,34 +1,48 @@
 <html>
 <head>
-	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<link href="../css/style.css" rel="stylesheet" type="text/css">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" ></script>
 	<script type="text/javascript" src="../scripts/operations.js"></script>
 	<script type="text/javascript" src="../scripts/stackmachine.js"></script>
 	<script type="text/javascript" src="../scripts/stackvalue.js"></script>
 	<script type="text/javascript" src="../scripts/exceptions.js"></script>
 	<script type="text/javascript" src="../scripts/lexer.js"></script>
 	<script type="text/javascript">
-		
 		$(function() {
 			$("#run").click(function() {
 				var source = $("#source").val();
-				program = Lexer.lex(source);
 				var machine = new StackMachine();
-				machine.loadInstructions(program);
+				
+				$("#result").html("");
 				try {
+					program = Lexer.lex(source);
+					machine.loadInstructions(program);
 					machine.executeAll();
-					console.log('Stack head = ' + machine.getStack().pop().value);
+					$("#result").append("Stack: " + JSON.stringify(machine.getStack().data));
 				}
 				catch (ex) {
 					console.log('Error = ' + ex.message);
+					$("#result").append("The following error occurred: " + ex.message);
 				}
+				
 			});
 		});
 	</script>
 </head>
 
 <body>
-	<textarea id="source" style="display:block; width:500px; height:300px;"></textarea>
-	<button id="run" style="width:50px; height:20px;">Run</button>
+	<div id="container">
+		<h1>StackOps</h1>
+		<div id="editor">
+			<div><textarea id="source"></textarea></div>
+			<div id="result">hello</div>
+			<button id="run">Run</button>
+		</div>
+		<div id="info">
+		
+		</div>
+	</div>
 </body>
 
 </html>

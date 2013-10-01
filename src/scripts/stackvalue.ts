@@ -6,9 +6,9 @@ interface StackValue<E> {
 }
 
 class NumberStackValue implements StackValue<number> {
-    private value: number = 1;
-     
-    constructor(value: number) { this.value = value; }
+    private value: number;
+    
+    constructor(value = 0) { this.value = value; }
     getValue() { return this.value; }
     setValue(value) { this.value = value; }
     canParse(s) { 
@@ -19,6 +19,6 @@ class NumberStackValue implements StackValue<number> {
         if (this.canParse(s))
             this.value = parseInt(s);
         else
-            alert("Couldnt parse int");
+            throw "Could not parse int";
     }
 }

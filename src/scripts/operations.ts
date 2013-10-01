@@ -1,4 +1,8 @@
 module Operations {
+    export function contains(name: string): boolean {
+        return this.get(name)
+    }
+
     export function get(name: string): Operation {
         return (new OperationStore()).get(name);
     }

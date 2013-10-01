@@ -1,5 +1,10 @@
 var Operations;
 (function (Operations) {
+    function contains(name) {
+        return this.get(name);
+    }
+    Operations.contains = contains;
+
     function get(name) {
         return (new OperationStore()).get(name);
     }

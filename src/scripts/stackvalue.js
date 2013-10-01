@@ -1,6 +1,6 @@
 var NumberStackValue = (function () {
     function NumberStackValue(value) {
-        this.value = 1;
+        if (typeof value === "undefined") { value = 0; }
         this.value = value;
     }
     NumberStackValue.prototype.getValue = function () {
@@ -17,7 +17,7 @@ var NumberStackValue = (function () {
         if (this.canParse(s))
             this.value = parseInt(s);
 else
-            alert("Couldnt parse int");
+            throw "Could not parse int";
     };
     return NumberStackValue;
 })();
