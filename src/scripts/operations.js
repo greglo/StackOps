@@ -38,7 +38,7 @@ else
                 throw ex;
             }
         };
-        AddOperation.prototype.argCount = function () {
+        AddOperation.prototype.getArgCount = function () {
             return 0;
         };
         return AddOperation;
@@ -51,7 +51,7 @@ else
             machine.getStack().push(args.pop());
             return machine.nextProgramCounter();
         };
-        ConstOperation.prototype.argCount = function () {
+        ConstOperation.prototype.getArgCount = function () {
             return 1;
         };
         return ConstOperation;

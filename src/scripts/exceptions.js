@@ -1,9 +1,18 @@
 var LexerException = (function () {
-    function LexerException(message) {
-        this.message = message;
+    function LexerException(errors) {
+        this.errors = errors;
         this.name = "LexerException";
+        this.message = JSON.stringify(this.errors);
     }
     return LexerException;
+})();
+
+var LexerLineException = (function () {
+    function LexerLineException(message) {
+        this.message = message;
+        this.name = "LexerLineException";
+    }
+    return LexerLineException;
 })();
 
 var StackException = (function () {

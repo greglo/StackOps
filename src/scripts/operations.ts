@@ -35,7 +35,7 @@ module Operations {
                 throw ex;
             }
         }
-        argCount() { return 0; }
+        getArgCount() { return 0; }
     }
  
     class ConstOperation implements Operation {
@@ -43,12 +43,12 @@ module Operations {
             machine.getStack().push(args.pop());
             return machine.nextProgramCounter();
         }
-        argCount() { return 1; }
+        getArgCount() { return 1; }
     }
  
     export interface Operation {
         execute: (machine: StackMachine, args: StackValue<any>[]) => number;
-        argCount: () => number;
+        getArgCount: () => number;
     }
 }
 

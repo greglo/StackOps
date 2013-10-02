@@ -1,5 +1,11 @@
 class LexerException {
     public name = "LexerException";
+    public message = JSON.stringify(this.errors);
+    constructor(public errors:LexerLineException[]) {}
+}
+
+class LexerLineException {
+    public name = "LexerLineException";
     constructor(public message:string) {}
 }
 
